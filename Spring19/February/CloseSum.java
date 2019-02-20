@@ -38,3 +38,33 @@ public class CloseSum {
         }
     }
 }
+
+/*Anthony Ong - just a quick debug fix on Kevin's code ---- on line 31:  if ((int) Math.abs(arr[leftInd] + arr[rightInd - 1] - key) < diff) 
+ has to be (...<=diff) because it will disregard cases and stop shifting the right-side index pointer to the left. This can be seen
+ when the key is set to 18 and it will print out 1 and 18 but the most correct answer would be 8 and 10. This is because the conditional
+ approaches 8 and 11 which is still the same diff as 1 and 18 so it does not shift left therefore it cannot shift further to the left 
+ towards 8 and 10. Aside from that, no noticable errors can be found so great job!
+ 
+ These are the lines I used to debug/check for errors from Kevin's code:
+ 
+  while (leftInd < rightInd) {
+                if ((int) Math.abs(arr[leftInd] + arr[rightInd] - key) < diff) {   
+                    item1 = arr[leftInd];
+                    item2 = arr[rightInd];
+                    diff = (int) Math.abs(arr[leftInd] + arr[rightInd] - key);
+					System.out.println(item1); //used to check what is in item1 so far
+					System.out.println(item2); //used to check what is in item2 so far
+					System.out.println("The diff is: " +diff); //checks the current difference
+                }
+                if ((int) Math.abs(arr[leftInd] + arr[rightInd - 1] - key) <= diff) {   // change to <= to cover similar difference cases
+                    System.out.println((int) Math.abs(arr[leftInd] + arr[rightInd - 1] - key) < diff);
+					System.out.println("Prev rightIndex is: " + rightInd);  //keeps track of rightIndex
+					rightInd--;
+					System.out.println("New rightIndex is: " +rightInd);
+                } else {
+                    System.out.println("Prev leftIndex is: " +leftInd);     //keeps track of leftIndex
+                    leftInd++;
+					System.out.println("New leftIndex is: " +leftInd);
+                }
+            }
+ */
